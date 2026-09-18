@@ -45,6 +45,31 @@ public class LoginTest {
         Login login = new Login("Kyle", "Name");
         assertFalse(login.checkCellPhoneNumber("08966553"));
     }
-}
+        @Test
+    public void testRegisterUserSuccess() {
+        Login login = new Login("Kyle", "Name");
+        String actual = login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27839658976");
+        assertEquals("Username successfully captured.", actual);
+    }
+
+    @Test
+    public void testLoginStatusSuccess() {
+        Login login = new Login("Kyle", "Name");
+        login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27839658976");
+        boolean isLogged = login.loginUser("kyl_1", "Ch&&sec@ke99!");
+        String actual = login.returnLoginStatus(isLogged);
+        assertEquals("Welcome Kyle, Name it is great to see you.", actual);
+    }
+
+    @Test
+    public void testLoginStatusFailure() {
+        Login login = new Login("Kyle", "Name");
+        login.registerUser("kyl_1", "Ch&&sec@ke99!", "+27839658976");
+        boolean isLogged = login.loginUser("wrong_user", "wrong_pass");
+        String actual = login.returnLoginStatus(isLogged);
+        assertEquals("Username or password incorrect, please try again.", actual);
+    
+    }
+    }
 
 
