@@ -29,9 +29,19 @@ public Login(String firstName, String lastName) {
         if (password == null || password.length() < 8) {
             return false;
         }
-        boolean hasCapital = !password.equals(password.toLowerCase());
-        boolean hasDigit = password.matches(".\\d.");
-        boolean hasSpecial = password.matches(".[!@#$%^&()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*");
+        boolean hasCapital = false;
+        boolean hasDigit = false;
+        boolean hasSpecial = false;
+        
+        for (char c : password.toCharArray()) {
+        if (Character.isUpperCase(c)) {
+            hasCapital = true;
+        } else if (Character.isDigit(c)) {
+            hasDigit = true;
+        } else if (Character.isLetterOrDigit(c)){
+            hasSpecial = true;
+        }
+        }
 
         return hasCapital && hasDigit && hasSpecial;
     }
