@@ -43,11 +43,60 @@ public class ChatApp {
 
             boolean loginSuccess = userLogin.loginUser(loginUser, loginPass);
             System.out.println(userLogin.returnLoginStatus(loginSuccess));
-        }
+            
+            //PART 2: MAIN MENU 
+            
+            if (loginSuccess) {
+                System.out.println("\nWelcome to QuickChat");
+                System.out.println("--------------------");
 
-        scanner.close();
+                boolean running = true;
+
+                while (running) {
+                    System.out.println("\nPlease choose an option:");
+                    System.out.println("1. Send Messages");
+                    System.out.println("2. Show Report");
+                    System.out.println("3. Quit");
+                    System.out.print("Enter choice: ");
+
+                    int choice = 0;
+                    if (scanner.hasNextInt()) {
+                        choice = scanner.nextInt();
+                        scanner.nextLine(); // consume newline
+                    } else {
+                        System.out.println("Invalid input. Please enter a number.");
+                        scanner.nextLine(); // clear invalid input
+                        continue;
+                    }
+
+                    switch (choice) {
+                        case 1:
+                            System.out.println("Preparing message sender...");
+                            break;
+                        case 2:
+                            System.out.println("Coming Soon");
+                            break;
+                        case 3:
+                            System.out.println("Exiting application. Goodbye!");
+                            running = false;
+                            break;
+                        default:
+                            System.out.println("Invalid option. Please choose 1, 2, or 3.");
+                    }
+                }
+            }
+        }
+        }
     }
-} 
+
+
+
+       
+
+    
+
+    
+
         
     
 
