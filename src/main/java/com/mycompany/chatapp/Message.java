@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.chatapp;
+
 import java.util.Random;
+
 /**
  *
  * @author Student
@@ -90,4 +92,5 @@ public class Message {
     public String getRecipientCell() { return recipientCell; }
     public String getMessageText() { return messageText; }
 }
+
 
