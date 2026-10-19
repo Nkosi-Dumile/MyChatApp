@@ -19,7 +19,7 @@ public class MessageTest {
     @Test
     public void testInvalidRecipientCell() {
         Message msg = new Message("0839658976", "Hello World");
-        assertEquals("Cell phone number is incorrectly formatted or does not contain country code.", msg.checkRecipientCell());
+        assertEquals("Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.", msg.checkRecipientCell());
     }
 
     @Test
@@ -45,8 +45,8 @@ public class MessageTest {
     public void testSentMessageChoices() {
         Message msg = new Message("+27839658976", "Test action choices");
         assertEquals("Message successfully sent.", msg.SentMessage(1));
-        assertEquals("Message discarded.", msg.SentMessage(2));
+        assertEquals("Press 0 to delete the message.", msg.SentMessage(2));
         assertEquals("Message saved to draft.", msg.SentMessage(3));
     }
+    
 }
-

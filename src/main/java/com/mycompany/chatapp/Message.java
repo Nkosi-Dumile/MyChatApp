@@ -35,7 +35,7 @@ public class Message {
     }
 
     public String checkRecipientCell() {
-        if (recipientCell != null && recipientCell.length() <= 10 && recipientCell.startsWith("+")) {
+        if (recipientCell != null && recipientCell.length() <= 12 && recipientCell.startsWith("+")) {
             return "Cell phone number successfully captured.";
         } else {
             return "Cell phone number is incorrectly formatted or does not contain an international code. Please correct the number and try again.";
@@ -70,7 +70,7 @@ public class Message {
             case 2:
                 return "Press 0 to delete the message.";
             case 3:
-                return "Message successfully stored.";
+                return "Message saved to draft.";
             default:
                 return "Invalid option.";
         }
