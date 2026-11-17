@@ -5,7 +5,7 @@
 package com.mycompany.chatapp;
 
 import java.util.Random;
-
+import java.util.ArrayList;
 /**
  *
  * @author Student
@@ -16,6 +16,16 @@ public class Message {
     private String messageText;
     private String messageHash;
     private static int totalMessagesSent = 0;
+    
+    // Parallel Arrays / Lists for Part 3 Storage & Reporting
+    private static ArrayList<String> sentMessages = new ArrayList<>();
+    private static ArrayList<String> disregardedMessages = new ArrayList<>();
+    private static ArrayList<String> storedMessages = new ArrayList<>();
+    private static ArrayList<String> messageHashes = new ArrayList<>();
+    private static ArrayList<String> messageIDs = new ArrayList<>();
+    private static ArrayList<String> recipients = new ArrayList<>();
+    
+
 
     public Message(String recipientCell, String messageText) {
         this.recipientCell = recipientCell;
@@ -64,12 +74,21 @@ public class Message {
 
     public String SentMessage(int choice) {
         switch (choice) {
-            case 1:
+       case 1:
                 totalMessagesSent++;
+                sentMessages.add(messageText);
+                messageHashes.add(messageHash);
+                messageIDs.add(messageID);
+                recipients.add(recipientCell);
                 return "Message successfully sent.";
             case 2:
+                disregardedMessages.add(messageText);
                 return "Press 0 to delete the message.";
             case 3:
+                storedMessages.add(messageText);
+                messageHashes.add(messageHash);
+                messageIDs.add(messageID);
+                recipients.add(recipientCell);
                 return "Message saved to draft.";
             default:
                 return "Invalid option.";
@@ -91,6 +110,14 @@ public class Message {
     public String getMessageHash() { return messageHash; }
     public String getRecipientCell() { return recipientCell; }
     public String getMessageText() { return messageText; }
+    
+    public static ArrayList<String> getSentMessages() { return sentMessages; }
+    public static ArrayList<String> getStoredMessages() { return storedMessages; }
+    public static ArrayList<String> getDisregardedMessages() { return disregardedMessages; }
+    public static ArrayList<String> getMessageHashes() { return messageHashes; }
+    public static ArrayList<String> getMessageIDs() { return messageIDs; }
+    public static ArrayList<String> getRecipients() { return recipients; }
+
 }
 
 
