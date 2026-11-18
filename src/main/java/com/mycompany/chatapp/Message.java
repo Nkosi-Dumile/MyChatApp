@@ -118,6 +118,65 @@ public class Message {
     public static ArrayList<String> getMessageIDs() { return messageIDs; }
     public static ArrayList<String> getRecipients() { return recipients; }
 
-}
+
+   
+    public static String getLongestStoredMessage() {
+        if (storedMessages.isEmpty()) {
+            return "No stored messages available.";
+        }
+        String longest = storedMessages.get(0);
+        for (String msg : storedMessages) {
+            if (msg.length() > longest.length()) {
+                longest = msg;
+            }
+        }
+        return longest;
+    }
+
+    public static String searchMessageByID(String targetID) {
+        for (int i = 0; i < messageIDs.size(); i++) {
+            if (messageIDs.get(i).equals(targetID)) {
+                return "Recipient: " + recipients.get(i) + "\nMessage: " + sentMessages.get(i);
+            }
+        }
+        return "Message ID not found.";
+    }
+
+    public static String searchMessagesByRecipient(String targetRecipient) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < recipients.size(); i++) {
+            if (recipients.get(i).equals(targetRecipient)) {
+                sb.append("ID: ").append(messageIDs.get(i)).append(" | Message: ").append(sentMessages.get(i)).append("\n");
+            }
+        }
+        return sb.length() > 0 ? sb.toString() : "No messages found for this recipient.";
+    }
+
+    public static String deleteMessageByHash(String targetHash) {
+        for (int i = 0; i < messageHashes.size(); i++) {
+            if (messageHashes.get(i).equals(targetHash)) {
+                sentMessages.remove(i);
+                storedMessages.remove(i);
+                messageHashes.remove(i);
+                messageIDs.remove(i);
+                recipients.remove(i);
+                return "Message successfully deleted.";
+            }
+        }
+        return "Message hash not found.";
+    }
+
+    public static String generateSentMessagesReport() {
+        StringBuilder sb = new StringBuilder("--- SENT MESSAGES REPORT ---\n");
+        for (int i = 0; i < sentMessages.size(); i++) {
+            sb.append("ID: ").append(messageIDs.get(i))
+              .append(" | Recipient: ").append(recipients.get(i))
+              .append(" | Message: ").append(sentMessages.get(i)).append("\n");
+        }
+        return sb.toString();
+    }
+
+} 
+
 
 

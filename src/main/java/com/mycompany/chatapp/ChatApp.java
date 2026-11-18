@@ -55,8 +55,13 @@ public class ChatApp {
                 while (running) {
                     System.out.println("\nPlease choose an option:");
                     System.out.println("1. Send Messages");
-                    System.out.println("2. Show Report");
-                    System.out.println("3. Quit");
+                System.out.println("2. Show Report / Recent Messages");
+                System.out.println("3. Display Longest Sent/Stored Message");
+                System.out.println("4. Search Message by ID");
+                System.out.println("5. Search Messages by Recipient");
+                System.out.println("6. Delete Message by Hash");
+                System.out.println("7. Display Full Sent Messages Report");
+                System.out.println("8. Quit");
                     System.out.print("Enter choice: ");
 
                     int choice = 0;
@@ -147,12 +152,38 @@ public class ChatApp {
                         case 2:
                             System.out.println("Coming Soon");
                             break;
+                            
                         case 3:
-                            System.out.println("Exiting application. Goodbye!");
-                            running = false;
-                            break;
-                        default:
-                            System.out.println("Invalid option. Please choose 1, 2, or 3.");
+                    System.out.println("Longest Message: " + Message.getLongestStoredMessage());
+                    break;
+                case 4:
+                    System.out.print("Enter Message ID to search: ");
+                    String searchID = scanner.nextLine();
+                    System.out.println(Message.searchMessageByID(searchID));
+                    break;
+                case 5:
+                    System.out.print("Enter Recipient Cell (+27...): ");
+                    String searchRecip = scanner.nextLine();
+                    System.out.println(Message.searchMessagesByRecipient(searchRecip));
+                    break;
+                case 6:
+                    System.out.print("Enter Message Hash to delete: ");
+                    String deleteHash = scanner.nextLine();
+                    System.out.println(Message.deleteMessageByHash(deleteHash));
+                    break;
+                case 7:
+                    System.out.println(Message.generateSentMessagesReport());
+                    break;
+                case 8:
+                    System.out.println("Exiting application. Goodbye!");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose between 1 and 8.");
+                    break;    
+                            
+
+                           
                     }
                 }
             }
