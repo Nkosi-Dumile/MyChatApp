@@ -49,4 +49,36 @@ public class MessageTest {
         assertEquals("Message saved to draft.", msg.SentMessage(3));
     }
     
+    @Test
+    public void testDisplayLongestMessage() {
+        String expected = "Where are you? You are late! I have asked you to be on time.";
+        String actual = Message.getLongestStoredMessage();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSearchMessageByID() {
+        String result = Message.searchMessageByID("0838884567");
+        assertTrue(result.contains("It is dinner time!"));
+    }
+
+    @Test
+    public void testSearchMessagesByRecipient() {
+        String result = Message.searchMessagesByRecipient("+27838884567");
+        assertTrue(result.contains("Where are you? You are late! I have asked you to be on time."));
+        assertTrue(result.contains("Ok, I am leaving without you."));
+    }
+
+    @Test
+    public void testDeleteMessageByHash() {
+        String result = Message.deleteMessageByHash("0838884567"); 
+        assertTrue(result.contains("successfully deleted"));
+    }
+
+    @Test
+    public void testDisplayReport() {
+        String report = Message.generateSentMessagesReport();
+        assertTrue(report.contains("Message Hash") || report.contains("ID"));
+        assertTrue(report.contains("Recipient"));
+    }
 }
